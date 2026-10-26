@@ -168,6 +168,23 @@ footer{padding-block:32px;color:var(--muted);font-size:13px;display:flex;flex-wr
 .herotop .me{width:76px;height:76px;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
 .logo .me{width:32px;height:32px}
 .contact .me{width:64px;height:64px;margin-bottom:16px;box-shadow:0 0 0 3px var(--ink),0 0 0 5px var(--bg)}
+
+.compose{grid-column:1/-1;border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent);padding-top:28px;display:grid;gap:16px}
+.compose h3{font-size:22px;font-weight:700}
+.compose .sub{opacity:.7;font-size:14px;margin:-8px 0 0}
+.purp{display:flex;flex-wrap:wrap;gap:8px}
+.purp button{font:600 13px var(--body);padding:8px 14px;border-radius:999px;border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);background:transparent;color:var(--bg);cursor:pointer}
+.purp button[aria-pressed="true"]{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:620px){.fields{grid-template-columns:1fr}}
+.compose label{display:grid;gap:6px;font-size:12px;font-family:var(--mono);opacity:.85;min-width:0}
+.compose input,.compose textarea{font:15px/1.5 var(--body);color:var(--bg);background:color-mix(in srgb,var(--bg) 8%,transparent);border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);border-radius:10px;padding:10px 12px;width:100%;resize:vertical}
+.compose input::placeholder,.compose textarea::placeholder{color:color-mix(in srgb,var(--bg) 45%,transparent)}
+.compose input:focus,.compose textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.sendrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sendrow a,.sendrow button{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font:600 14px var(--body);text-decoration:none;cursor:pointer;border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);background:transparent;color:var(--bg)}
+.sendrow .go{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sendrow small{opacity:.6;font-size:12px}
 </style>
 </head>
 <body>
@@ -282,6 +299,28 @@ footer{padding-block:32px;color:var(--muted);font-size:13px;display:flex;flex-wr
         <div class="crow"><div><span>Phone</span><b>+91 87801 44201</b></div><button class="copy" data-copy="+918780144201">Copy</button></div>
         <div class="crow"><div><span>LinkedIn</span><b><a href="https://linkedin.com/in/vicky-chauhan-developer" target="_blank" rel="noopener">in/vicky-chauhan-developer ↗</a></b></div></div>
       </div>
+      <form class="compose" id="compose" novalidate>
+        <div><h3>Draft an email</h3></div>
+        <p class="sub">Pick what it's about and I'll pre-write the email. Edit anything, then send from your mail app or Gmail.</p>
+        <div class="purp" id="purp" role="group" aria-label="What is this about">
+          <button type="button" data-p="job" aria-pressed="true">Job opportunity</button>
+          <button type="button" data-p="project" aria-pressed="false">New app project</button>
+          <button type="button" data-p="freelance" aria-pressed="false">Freelance / consulting</button>
+          <button type="button" data-p="other" aria-pressed="false">Just saying hi</button>
+        </div>
+        <div class="fields">
+          <label for="cName">Your name<input id="cName" type="text" placeholder="e.g. Priya Shah" autocomplete="name"></label>
+          <label for="cCompany">Company (optional)<input id="cCompany" type="text" placeholder="e.g. Acme Labs" autocomplete="organization"></label>
+        </div>
+        <label for="cSubject">Subject<input id="cSubject" type="text"></label>
+        <label for="cBody">Message<textarea id="cBody" rows="8"></textarea></label>
+        <div class="sendrow">
+          <a class="go" id="mailBtn" href="mailto:vicky114chauhan@gmail.com">✉ Open in mail app</a>
+          <a id="gmailBtn" href="https://mail.google.com/mail/?view=cm&amp;to=vicky114chauhan@gmail.com" target="_blank" rel="noopener">Open in Gmail ↗</a>
+          <button type="button" id="copyDraft">Copy email</button>
+          <small>Sends to vicky114chauhan@gmail.com</small>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -401,6 +440,38 @@ document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
   try{navigator.clipboard.writeText(t).then(done,()=>{sel(b);});}catch(e){sel(b)}
 }));
 function sel(b){const el=b.parentElement.querySelector('b');const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';setTimeout(()=>b.textContent='Copy',1600)}
+
+/* email composer */
+const TO='vicky114chauhan@gmail.com';
+const TPL={
+ job:{s:'Senior React Native role{co}',b:'Hi Vicky,\n\nI came across your portfolio and I\'m hiring for a Senior React Native Developer{coIn}. Your work on FieldTrack360 and the payment integrations stood out.\n\nWould you be open to a quick call this week to talk about the role?\n\nBest regards,\n{name}'},
+ project:{s:'New mobile app project{co}',b:'Hi Vicky,\n\nWe\'re planning a new mobile app for Android and iOS{coIn} and are looking for someone to build it from scratch with React Native.\n\nA quick overview:\n- What the app does: \n- Target launch date: \n- Budget range: \n\nCould we set up a call to discuss scope and timelines?\n\nThanks,\n{name}'},
+ freelance:{s:'Freelance React Native help{co}',b:'Hi Vicky,\n\nWe have an existing React Native app{coIn} and need help with:\n- \n\nAre you available for freelance or consulting work? Happy to share more details.\n\nThanks,\n{name}'},
+ other:{s:'Hello from your portfolio',b:'Hi Vicky,\n\nI just went through your portfolio and wanted to say hello.\n\n\n\nCheers,\n{name}'}
+};
+let purpose='job',dirty=false;
+const $=id=>document.getElementById(id);
+function fill(){
+  const n=$('cName').value.trim(),c=$('cCompany').value.trim();
+  const t=TPL[purpose];
+  $('cSubject').value=t.s.replace('{co}',c?' at '+c:'');
+  $('cBody').value=t.b.replace('{coIn}',c?' at '+c:'').replace('{name}',n||'[Your name]');
+  dirty=false;links();
+}
+function links(){
+  const s=encodeURIComponent($('cSubject').value),b=encodeURIComponent($('cBody').value);
+  $('mailBtn').href=`mailto:${TO}?subject=${s}&body=${b}`;
+  $('gmailBtn').href=`https://mail.google.com/mail/?view=cm&fs=1&to=${TO}&su=${s}&body=${b}`;
+}
+$('purp').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  purpose=b.dataset.p;$('purp').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));fill();});
+['cName','cCompany'].forEach(id=>$(id).addEventListener('input',()=>{if(!dirty)fill();else links();}));
+['cSubject','cBody'].forEach(id=>$(id).addEventListener('input',()=>{dirty=true;links();}));
+$('compose').addEventListener('submit',e=>e.preventDefault());
+$('copyDraft').addEventListener('click',()=>{const btn=$('copyDraft'),txt=`To: ${TO}\nSubject: ${$('cSubject').value}\n\n${$('cBody').value}`;
+  const ok=()=>{btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy email',1600)};
+  try{navigator.clipboard.writeText(txt).then(ok,()=>{$('cBody').select();})}catch(e){$('cBody').select()}});
+fill();
 </script>
 
 </body>
