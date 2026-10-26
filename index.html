@@ -242,6 +242,15 @@ footer{padding-block:32px;color:var(--muted);font-size:13px;display:flex;flex-wr
 /* back to top */
 .totop{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;text-decoration:none;z-index:6;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 10px 24px -10px rgba(10,12,40,.4)}
 .totop.on{opacity:1;pointer-events:auto}
+
+.quote{border-top:1px solid var(--line);padding-block:64px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.quote .qm{font-family:var(--display);font-weight:800;font-size:clamp(90px,12vw,150px);line-height:.7;color:var(--accent)}
+.quote blockquote{margin:0;font-family:var(--display);font-weight:600;font-size:clamp(26px,3.6vw,42px);line-height:1.18;letter-spacing:-.015em;max-width:26ch;text-wrap:balance}
+.quote blockquote em{font-style:normal;color:var(--accent)}
+.quote figcaption{margin-top:22px;display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted)}
+.quote figcaption .me{width:40px;height:40px}
+.quote figcaption b{color:var(--ink);display:block;font-weight:600}
+@media (max-width:560px){.quote{grid-template-columns:1fr;gap:6px}}
 </style>
 </head>
 <body>
@@ -289,6 +298,14 @@ footer{padding-block:32px;color:var(--muted);font-size:13px;display:flex;flex-wr
       <div class="devcap" id="devcap"></div>
     </div>
   </header>
+
+<figure class="quote">
+    <div class="qm" aria-hidden="true">“</div>
+    <div>
+      <blockquote>A great app isn’t the one with the most features. It’s the one that <em>still works when the network drops</em>, the payment fails, or the phone kills it in the background.</blockquote>
+      <figcaption><span class="me" role="img" aria-label=""></span><span><b>Vicky Chauhan</b>How I build every app I ship</span></figcaption>
+    </div>
+  </figure>
 
   <section id="apps">
     <div class="shead">
