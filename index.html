@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vicky Chauhan · Senior React Native Developer</title>
+<meta property="og:title" content="Vicky Chauhan · Senior React Native Developer">
+<meta property="og:description" content="React Native developer with 5+ years and 10+ apps shipped to the App Store and Google Play.">
+<meta property="og:type" content="website">
+<meta name="author" content="Vicky Chauhan">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}html{scroll-behavior:smooth}</style>
+
+<meta name="description" content="Vicky Chauhan, Senior React Native Developer in Ahmedabad. 10+ apps shipped to the App Store and Google Play.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: split hero (pitch + live phone that previews each shipped app), then a filterable store shelf, release-log timeline, stack, contact. */
+:root{
+  --bg:#F2F3F8; --surface:#FFFFFF; --ink:#14162B; --muted:#5A5F78; --line:#DCDFEA;
+  --accent:#3B3FD8; --accent-ink:#FFFFFF; --soft:#E6E7FB; --live:#C98300; --live-soft:#FFF1D6;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D0F1E; --surface:#161930; --ink:#ECEDF7; --muted:#9DA2BE; --line:#2A2E4A;
+  --accent:#8F93FF; --accent-ink:#0D0F1E; --soft:#22264B; --live:#F2B843; --live-soft:#3A2F14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D0F1E; --surface:#161930; --ink:#ECEDF7; --muted:#9DA2BE; --line:#2A2E4A;
+  --accent:#8F93FF; --accent-ink:#0D0F1E; --soft:#22264B; --live:#F2B843; --live-soft:#3A2F14; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font-family:var(--display);font-weight:800;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo span{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:15px}
+.navlinks{display:flex;gap:22px;font-size:14px;font-weight:500}
+.navlinks a{text-decoration:none;color:var(--muted)}
+.navlinks a:hover{color:var(--ink)}
+@media (max-width:640px){.navlinks{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;padding-block:64px 56px}
+.hero > *{min-width:0}
+.status{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--live-soft);color:var(--live);font-size:13px;font-weight:600}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 var(--live);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 60%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+.hero h1{font-size:clamp(44px,7vw,84px);font-weight:800;letter-spacing:-.03em;margin-top:20px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.role{font-family:var(--display);font-size:clamp(20px,2.4vw,26px);font-weight:500;color:var(--muted);margin-top:12px}
+.pitch{max-width:58ch;margin-top:20px;color:var(--muted);font-size:17px}
+.pitch b{color:var(--ink);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:12px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-family:inherit;transition:transform .15s,border-color .15s}
+.btn:hover{transform:translateY(-1px);border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.stats{display:flex;flex-wrap:wrap;gap:36px;margin-top:40px;padding-top:28px;border-top:1px solid var(--line)}
+.stat b{display:block;font-family:var(--display);font-size:38px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* phone */
+.device{display:flex;flex-direction:column;align-items:center;gap:18px}
+.phone{width:min(290px,100%);aspect-ratio:9/18.5;border-radius:44px;padding:11px;background:#1B1D2E;box-shadow:0 30px 60px -20px rgba(20,22,60,.45),inset 0 0 0 2px #34374F;position:relative}
+.screen{width:100%;height:100%;border-radius:34px;overflow:hidden;position:relative;background:#F7F7FB;color:#14162B;font-family:var(--body)}
+.notch{position:absolute;top:10px;left:50%;translate:-50% 0;width:84px;height:24px;border-radius:14px;background:#1B1D2E;z-index:3}
+.sbar{display:flex;justify-content:space-between;padding:12px 22px 0;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.app{position:absolute;inset:34px 0 0;padding:14px 16px;display:flex;flex-direction:column;gap:10px;animation:screenIn .45s ease}
+@keyframes screenIn{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
+.app h4{margin:0;font-family:var(--display);font-size:19px;font-weight:700;line-height:1.1}
+.app small{font-size:11px;color:#626782}
+.tile{background:#fff;border-radius:14px;padding:10px 12px;box-shadow:0 1px 0 #E3E5EF}
+.devpick{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:320px}
+.devpick button{font:500 12px var(--body);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.devpick button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.devcap{font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+/* sections */
+section{padding-block:72px;border-top:1px solid var(--line)}
+.shead{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px;margin-bottom:32px}
+.shead h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;letter-spacing:-.02em;margin-top:8px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:600 13px var(--body);padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+@media (max-width:400px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:14px;transition:border-color .2s,transform .2s;min-width:0}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card[hidden]{display:none!important}
+.ctop{display:flex;gap:14px;align-items:center}
+.icon{width:52px;height:52px;flex:none;border-radius:14px;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:20px;color:#fff}
+.ctop h3{font-size:22px;font-weight:700}
+.ctop p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.pkg{font-family:var(--mono);font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.card > p{margin:0;color:var(--muted);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font-size:12px;padding:3px 9px;border-radius:6px;background:var(--soft);color:var(--ink)}
+details{border-top:1px dashed var(--line);padding-top:10px}
+summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--accent);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";font-family:var(--mono)}
+details[open] summary::before{content:"– "}
+details ul{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--muted)}
+details li{margin-bottom:4px}
+.stores{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:4px}
+.store{display:inline-flex;align-items:center;gap:8px;padding:8px 13px 8px 10px;border-radius:10px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:13px;line-height:1.15;transition:opacity .15s}
+.store:hover{opacity:.85}
+.store svg{width:18px;height:18px;flex:none}
+.store small{display:block;font-size:10px;opacity:.75}
+.store b{font-weight:600}
+.store.off{background:transparent;color:var(--muted);border:1px dashed var(--line);cursor:default}
+
+/* timeline */
+.tl{display:grid;gap:0}
+.job{display:grid;grid-template-columns:200px 1fr;gap:32px;padding-block:28px;border-bottom:1px solid var(--line)}
+.job > *{min-width:0}
+.job:last-child{border-bottom:0}
+.when{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.when b{display:block;font-family:var(--display);font-size:15px;color:var(--ink);margin-bottom:4px}
+.job h3{font-size:24px;font-weight:700}
+.job .co{color:var(--accent);font-weight:600;font-size:15px;margin-top:4px}
+.job ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+.job li{margin-bottom:5px}
+@media (max-width:720px){.job{grid-template-columns:1fr;gap:10px}}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.sg{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.sg h3{font-size:14px;font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.sg div{display:flex;flex-wrap:wrap;gap:6px}
+.sg span{font-size:14px;padding:5px 10px;border-radius:8px;border:1px solid var(--line)}
+.wins{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:36px}
+.win{padding:20px;border-radius:var(--r);background:var(--soft)}
+.win b{font-family:var(--display);font-size:30px;font-weight:800;color:var(--accent);display:block;line-height:1}
+.win p{margin:8px 0 0;font-size:14px}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.contact > *{min-width:0}
+.contact h2{font-size:clamp(32px,4.6vw,56px);font-weight:800;letter-spacing:-.02em}
+.contact p{opacity:.75;max-width:48ch}
+.clist{display:grid;gap:10px}
+.crow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;border:1px solid color-mix(in srgb,var(--bg) 22%,transparent)}
+.crow span{font-size:12px;opacity:.6;display:block;font-family:var(--mono)}
+.crow b{font-weight:600;overflow-wrap:anywhere;user-select:all}
+.crow a{color:inherit;text-decoration:none}
+.copy{font:600 12px var(--body);padding:7px 12px;border-radius:8px;border:0;background:var(--bg);color:var(--ink);cursor:pointer;flex:none}
+@media (max-width:820px){.hero,.contact{grid-template-columns:1fr}.device{order:-1}}
+footer{padding-block:32px;color:var(--muted);font-size:13px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.icon img{width:100%;height:100%;object-fit:cover;display:block}
+.icon{overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.devpick button{display:inline-flex;align-items:center;gap:6px}
+.devpick img{border-radius:5px}
+.me{background:var(--soft) center/cover no-repeat url("data:image/webp;base64,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");border-radius:50%;flex:none}
+.herotop{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.herotop .me{width:76px;height:76px;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
+.logo .me{width:32px;height:32px}
+.contact .me{width:64px;height:64px;margin-bottom:16px;box-shadow:0 0 0 3px var(--ink),0 0 0 5px var(--bg)}
+</style>
+</head>
+<body>
+
+
+<nav><div class="wrap">
+  <a class="logo" href="#top"><i class="me" role="img" aria-label="Vicky Chauhan"></i>Vicky Chauhan</a>
+  <div class="navlinks"><a href="#apps">Apps</a><a href="#experience">Experience</a><a href="#stack">Stack</a><a href="#contact">Contact</a></div>
+  <a class="btn primary" href="#contact" style="padding:9px 16px;font-size:14px">Hire me</a>
+</div></nav>
+
+<main class="wrap" id="top">
+  <header class="hero">
+    <div>
+      <div class="herotop"><div class="me" role="img" aria-label="Photo of Vicky Chauhan"></div><span class="status"><i></i>Open to senior React Native roles</span></div>
+      <h1>I build apps that <em>ship</em> to both stores.</h1>
+      <p class="role">Senior React Native Developer · Ahmedabad, India</p>
+      <p class="pitch">5+ years taking Android and iOS apps from the <b>first commit to the store release</b>. I own architecture: offline-first data with Realm, background location and geofencing, real-time chat over Socket.IO, and <b>native bridges for payment SDKs</b>.</p>
+      <div class="cta">
+        <a class="btn primary" href="#apps">See shipped apps ↓</a>
+        <a class="btn" href="https://linkedin.com/in/vicky-chauhan-developer" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>5+</b><span>years in React Native</span></div>
+        <div class="stat"><b>10+</b><span>apps live on the stores</span></div>
+        <div class="stat"><b>10+</b><span>payment methods integrated</span></div>
+      </div>
+    </div>
+
+    <div class="device" aria-label="App preview">
+      <div class="phone"><div class="screen">
+        <div class="notch"></div>
+        <div class="sbar"><span id="clock">9:41</span><span>5G ▮▮▮</span></div>
+        <div id="appScreen"></div>
+      </div></div>
+      <div class="devpick" id="devpick" role="group" aria-label="Preview an app"></div>
+      <div class="devcap" id="devcap"></div>
+    </div>
+  </header>
+
+  <section id="apps">
+    <div class="shead">
+      <div><div class="eyebrow">Shipped work</div><h2>Apps on the stores</h2></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter apps"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="experience">
+    <div class="shead"><div><div class="eyebrow">Release log</div><h2>Experience</h2></div></div>
+    <div class="tl">
+      <article class="job">
+        <div class="when"><b>Feb 2025 – Present</b>Ahmedabad</div>
+        <div><h3>Senior React Native Developer</h3><div class="co">Devstree IT Services Pvt. Ltd.</div>
+          <ul>
+            <li>Built FieldTrack360 from scratch and own its full frontend architecture, from Realm sync to background GPS.</li>
+            <li>Shipped AI features in Desibox: photo-to-recipe, a 7-day meal planner and multilingual voice ordering.</li>
+            <li>Wrote a custom iOS native bridge for the Fortis payment SDK with Apple Pay for Cristo+.</li>
+            <li>Fixed long-running Socket.IO drops, upgraded React Native versions and cut crash rates on G-Auto and G-Pilot.</li>
+          </ul></div>
+      </article>
+      <article class="job">
+        <div class="when"><b>Sept 2023 – Jan 2025</b>iWant Technologies</div>
+        <div><h3>Software Developer</h3><div class="co">iWant Technologies Pvt. Ltd.</div>
+          <ul>
+            <li>Set up the frontend architecture for Status365, an event photo and video app.</li>
+            <li>Integrated in-app image and video editing, OneSignal push and the Paytm payment gateway.</li>
+            <li>Handled media downloads and file access on Android and iOS, then published and maintained the app.</li>
+          </ul></div>
+      </article>
+      <article class="job">
+        <div class="when"><b>Sept 2021 – Aug 2023</b>iWant Technologies</div>
+        <div><h3>Associate Software Developer</h3><div class="co">iWant Technologies Pvt. Ltd.</div>
+          <ul>
+            <li>Developed Banjee, a cross-platform neighbourhood social app, in JavaScript and TypeScript.</li>
+            <li>Moved app state to Redux and built real-time updates with Socket.IO and Firebase push.</li>
+            <li>Turned Figma designs into pixel-accurate screens and worked directly with clients over Jira and Teams.</li>
+          </ul></div>
+      </article>
+      <article class="job">
+        <div class="when"><b>Feb 2021 – Aug 2021</b>iWant Technologies</div>
+        <div><h3>React Native Intern</h3><div class="co">iWant Technologies Pvt. Ltd.</div>
+          <ul><li>Trained in React Native and React.js and contributed performance and UI fixes on live projects.</li></ul></div>
+      </article>
+      <article class="job">
+        <div class="when"><b>2015 – 2021</b>Gujarat Technological University</div>
+        <div><h3>B.E. Computer Engineering</h3><div class="co">CGPA 9.1 · Diploma in Computer Engineering, CGPA 9.3</div></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="shead"><div><div class="eyebrow">Toolbox</div><h2>Stack</h2></div></div>
+    <div class="stack" id="stackGrid"></div>
+    <div class="wins">
+      <div class="win"><b>Native bridge</b><p>Custom Swift bridge connecting React Native to the Fortis payment SDK, passing results and errors back to JS.</p></div>
+      <div class="win"><b>Killed-state GPS</b><p>Location tracking that keeps running in foreground, background and killed states on both platforms.</p></div>
+      <div class="win"><b>AI in production</b><p>Photo-to-recipe, meal planning and voice ordering live in Desibox.</p></div>
+      <div class="win"><b>Offline-first</b><p>Realm data layer so field agents keep working with no network and sync on reconnect.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top:0">
+    <div class="contact">
+      <div>
+        <div class="me" role="img" aria-label="Vicky Chauhan"></div><div class="eyebrow" style="color:inherit;opacity:.6">Let's talk</div>
+        <h2 style="margin-top:10px">Have an app that needs to ship?</h2>
+        <p>I'm happy to talk about senior React Native roles, architecture work, or taking a product from zero to both stores.</p>
+      </div>
+      <div class="clist">
+        <div class="crow"><div><span>Email</span><b id="em">vicky114chauhan@gmail.com</b></div><button class="copy" id="cpEmail" data-copy="vicky114chauhan@gmail.com">Copy</button></div>
+        <div class="crow"><div><span>Phone</span><b>+91 87801 44201</b></div><button class="copy" data-copy="+918780144201">Copy</button></div>
+        <div class="crow"><div><span>LinkedIn</span><b><a href="https://linkedin.com/in/vicky-chauhan-developer" target="_blank" rel="noopener">in/vicky-chauhan-developer ↗</a></b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Vicky Chauhan</span><span>Built with care, shipped like an app.</span></footer>
+</main>
+
+<script>
+const APPLE='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.2 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3.1 2.4 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.6-1-2.7-3.9zM14 5.5c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>';
+const PLAY='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#34A853" d="M3.6 2.3 13.4 12l-9.8 9.7c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1z"/><path fill="#FBBC04" d="m16.8 15.4-3.4-3.4 3.4-3.4 3.9 2.2c1.1.6 1.1 1.8 0 2.4z"/><path fill="#EA4335" d="M13.4 12 3.6 21.7c.4.3 1 .3 1.6 0l11.6-6.3z"/><path fill="#4285F4" d="M13.4 12 3.6 2.3c.4-.3 1-.3 1.6 0l11.6 6.3z"/></svg>';
+
+const ICONS={"cr": "data:image/webp;base64,UklGRmoEAABXRUJQVlA4IF4EAABQIACdASqAAIAAPkkejEOioaGYDnwAKASEoA1QIL/x3Zpgz7Z+RHDSd+eiKI7yq+4D31/0fyO/4Dfk+YD9WP+H/kPey9AHoAfsB1i/8l9QD9jvS5/cD4cP3P/WD2lLonUM3yI5kCeAfQfpb+k90A9gD9STgcP/k3D8AviJI2CFP+QuS+kJZnyyifLdHqzVivhZ/CsJGpL8MCTfLtpZnxX3bMoWtks5+jisyg3bGiQUV2spY4Fxr37LcYqrQm0L9rjlIotwsUnXMA00EHdersL1MuP1o9SaDSShVAqre8NrWtOX2jKSOTfSVCR4p6H+N9LJxBB3xB9gMlc74+TBEUJVlHEVVhz1jrX6kYAA/v91/0VIiP80yYz73/E4P/fR91iTzAICb/+wzmaGM+kI59JqLYsXh5jYIemJEAUG3e6uQvMo//JdOp8n+oPOJ39PSzRzwta2UEyf7uJAPRngeRoermC47AHR2+mTAnc1H8g+CCst/5dirn2mAIeVJO998xEo4cTs6ul1LR6rvCv3pkejP+IbMhk9QAofo/8rgYcrhBCuTWIdA1qQu81X0yzt4LBnclUEtUawW7MznAjAAqP+vajuRc5DL8cWMAEbT2ltwPxAkEOa/QgMD1hRHMK2mYy+ezeZSqBVGumtsVYyOdbYgV4O8ZDTwKKSqpEWCsdrqb3oMhEqzz4eDT2Vz7jw2RIRdUF81CCUdASGT1a6/D+9Bt95MxZ62U9+ZmLDaEkQ8EpjMahZMZBsiErAMeC6bFaOzJufGN6FxWuq0SelJ5zUmgHSNSnk5F9DwIdPfPLB1+dOYWEU1D7sEwQ0zahjfYaEyFePeJyNchS61sDPJac5kTbU6tITuhgDgMsg6sZUo1gcDx1fR/oYJN8/KUOS5Ub5/RLQ2iD+K93LP3ac+ujKBCV03Xxb4euZ/EZliTRg377LGWeNTI38sD9ISZd/xk778Auo83S5PpSxBG7NWRuW01Nu0UnaHD9/Ma4VhuObZXTf/mfg8tIr1WFzh+qiMxinhSib0Q8YKyCOQ5cPare3+xqeuVPWoit4pXYEzcfGJTBtismjH7xLNGarYPPP79nMd/4EOSogKTAJMNQF9+MH9/AxGdSUxH1ryVSPhW2jMA/DJnfYeAB4tY4AHanbx9kG03vHGgFQQVo6UQB+72c9e9Ud6SRQxcHK0GMAcvhldYh5T87K4662wMuEyse5Mj5dxXaRBSBOuh9G70tsAHi7dWt1zbFaHHeURRzpx4V9sImtp1g/5JAWAwC8w9rP0XGPf/Sn7Q3NnbrXnHNUL3inlwvTtJhpS3YEZjGERwiI7wDBGNwUdFc4ni/7PQzy3D7B7HzEya2RjHePl0MlBr0ygauQaMmUBzZ7/0XBR/y5AHM7j98v6ar/v503nsKavYAHbU9uhpdKR28wmaOMHmdIxAAGKZ/2z/VEf4lL/w0oP+o9ff/FZVweqNfGM37plLo1JNvscaO4aR/rLMEAAA==", "ft": "data:image/webp;base64,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", "atz": "data:image/webp;base64,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", "bj": "data:image/webp;base64,UklGRuoEAABXRUJQVlA4IN4EAACQHACdASqAAIAAPkkkjkWioiESyjSIKASEsYA8Nvt/5FcxDr13o5Ck6nov69fk/tJ7UXiQ/3vqAeYD9ef2Z9UD2GegB/c/9H1gHoAfsB6ZX7Z/A7+yH7fe1Vd9n2bo1PGPs7k9/vHC3tR/4DegMpf5ndVdeLLp5yvoX/wf4n8M/sJ/l/9Y/2/YI9EP9aR5mUnjjSvBqzx80pO9F26v/rqp69oPw6CGg8wpxGiEOyRxCIe6nLD9Pd+SU00j/unU+oBhbBjUkzFmqm8aa//9c3Q19VBmh8xu9H+xotki+bd/7oZfRd4YrXnwU40w7dgA/v15GAHm1VI5eQZ5Yps6xkrr9JwBZzwHI1pZNJdEH/Oo4fzm+ahBWZc5ieReEWcED4AO7xinrCw/LmwecIT0wdj0mrSVO0wY0C1uAAp8Ew+iHRNDUk5Jz5UBLQtZv2fE1cs6As3/mtcrt4Pvo7wpRzb6/cu54gKImc9Pj3Bsz/Hx1hVZbXCU1kPEQ296kz2B0kR0Iog5XUvKsVl7Qb/1nKiJq7K++yoglL3xeavL1J+cwX0z/vBDWWBCbsSbCfL5zV/RREJtq9W+Mx4XVZ6koHjqIpG0VPr0+EjNzEVhivw7sDW7E7EINxpMt/4j1l/+CmLXODSbHqXQw/HGorB7h3O4LTHfHc18cQ9S4BZjjz77Iq+ROH7+qGgpu+gs+t2F/IPR9iaSvvbf7gPX+cw+YEoMs5UrAAZiQHdEEFq8lNEm6HDIu9/wAQDbS55pfmw93t6umvfrrhQctDZrwPvkBD093qTq72kJZ5s71Z+DmMKDdyICdZiwrrHUJqy5esRufxb+neF+Sb4gUZ2UXqn2//Lohh+PIhWj1qWPlJRlPBzolzpBH1Ixi/TCW9sZyK3PCmVwtgx8dFR9T6Y+o0x2tae+SNZPtz+LDHtXICp2t899j/G3nU/lwtdWRFWZP4X04jt88KBtFqU6kraDCgS8b9G5dncUIA9wM9VlfhZylMgj/VfpYO6M/pRgkiw9AnqON4GAD6/nNuYIWIqzjopsTYs7PeS/YXruzP0lUzHPPeWokhfkD4lUSDcQW7774ZLKvNPY2X2T4iNFGLWDYOyuWJBniSECCuCZjSyS074OA2hWQac6Ik32lI+ZjTJfcuZxDy5ekKnpp7CrZVt8+/K9jPzn1Vmzbf/hhGHjJZYMxYnhU/XRT8GWNY/4jMgHRLNJ37ho1iWZA/0aMm5Fqa3usoYPX/SW074avQoU1FTWCVqKQaOI/JqfTU7BRSad8qjsWCXSvO3KAbfi6Fk/fvzGTBJqHmajNsJy9w6PYoctaItOfxekD/Y59rvpp0fpiMccChnGltTSnl3V9KhhnPSqyySKLdFwRAFb3QUhEF4rnygt8FI/k8i4NnIXS8w6hdDTzwkhi3O25EGeClxyYCbn/k2abeUahsS9nljrZ6ttGr9ZKfYDJ6tvyslHN6yt6/1Fxr8NNpzV7eS3RKk9U1AdqJVh1TAtbZiKu4CkY3cqRLqbBFoST9+DMUbWAQKXhwodOYzWhs0SGv6nAhnnYJ/GW8DMYknnYC79elPupMGmU6WNIe3RjK3qiU7x1l5eOPTW2tf3Z5cDFcjn1tm6KPm1rxiiJQjBnSMJf8c1fAtToFfr6CZAlRVOKbyyb/vgAAAA", "ga": "data:image/webp;base64,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", "db": "data:image/webp;base64,UklGRqAEAABXRUJQVlA4IJQEAABwGgCdASqAAIAAPkkijEQioiEXSwwcKASEsQBqRPt/M/xg2UDq/4t/kz1lO3/bf8jMzV5A/uH5jdgDzAP0c/0fUP8wH64fsB74noA9AD+zf47rG/QA8r39wPhK/ar9yvZque0ixW4NwFt0mQeS36T3Wb2Yy4znjXBljgLPjeVPQU/+MSBR80GWD3I28slrrjkvTJpJVMsR+HWIYwQBxx7V8eDnuX1rAKsTePS5B7/gT8Le2Tjj/D+EdLP2jAXgaY+7SjRPXQqGPcqKqVqANPj//iQ+tJMh9LNNUH5AAP7wxAMeKWMq6KG78sU+WKcrdlAB+yN+z0nFVC6QYH/MkBMWXOhI3h+0I45TFHgyfE76feeX9XcABTWE2Ap8X8vbiY0WLeCJbVeR+BNwAbUk+cL4edP4m1sFg8nSapATuRoxdFrmZTCN8mtzVp8ksaNySlZ9IsLTBfKvaezDRznrFUlSy4Hszia+EbriBfScfI/jeylD0FpLby/n0c4Z/7gGQcUI9sEb26seAEc5E3pDSyFAPzBDGc5KlWELpBEOzSSmA+XXwAYkt3OAfmtrmwiYBKf/NXj/buJQABGC4JkjDQAqOUOVDsOq67YXPWAQb/nAMn9R5vmmDyxTlbpeh20pwfn4Uq7qX7/S4q+MgM1v9MOiOE9G5asa1wspdYES+FaSmqvwV3lnFahz2gQUMGTa3bmnCsOfYdaLXMbCxQxhbU7GQudH2Kn5DZQBfHqXN9sfFeaKJvNwIajAljKW0l0BooMMEW+9OofgLdDgPgXGZj3wBC0QhNyRsr7G5Z8TLOAzZsMiMHYOGcBOvKrKv+IP9Ms5AKghVfQeK+jSe55q/B2G6J+asLBupBlf6G8tk94kT567CZavycpdAqjXx/zD5/v6BpT5e4oF2nzseqQyeT552YhlfcuCIJSkL3+O4sSsqyuT4GPlOCZMR8U9pbQjf7y8jw0KNjtl5QaXQlQk73eSuKDIAFqOfnFrdQHjE65gheTF6vi7p27PQp5Aev5WOTDfBpvot3Z16DNIDoA6/9t1tKHKZNOcEjGbsqJz005F28RB//rTyCc2P8nfcz7i/mvUA3Stebcn20PegzXLB/a/KsDnv1fsLltZjMavVq0xLwEWFeuQ30uVp7vRjg+hK7XF6LqTf6YJtpSDaOcI/Drax1DW5u8D5NiDe51eXsfyLvWSlZwFM3iynSPe24b4qpe4nlaB4R/BWsGZuGaeQ8zn7Q7/5ymkNEEOBFtZP2eHYy3OnrtNH1LSuNsNI1kvlIjWlV/D136QOUzo0dsMsmJFvYGWO3bsZI4T7NNHfemNgEAQ7bx4gT1vZE77jrRB6INELCWt5Y3hyhMKYjTsZeMgDwjgfM6HbrwlbMLZFUp3Ydipwd6LEtPF54ukAELBs1PSqU3y+gMFWNeexvT2Jfg3u20l92pO/kq6o/PPD1UEpf+s4yGu4E/PZUd5w1PfYlqVa5xYu3DH7fHkV+f7m3kLuhilUs2LcdGfZiSuOv1Q/3oewqdHuDIS6PILCLjneTdykzu7GvuxFszXdFmSgAAAAAAAAA=="};
+/* Edit store links here. Leave a store empty ('') to show "Link coming soon". */
+const APPS=[
+ {id:'ft',name:'FieldTrack360',sub:'Field workforce management',color:'#2F6BEB',cats:['location','realtime'],pkg:'com.dev.fieldtrack',
+  desc:'Attendance, visits, route history and TA/DA travel claims for field teams, working fully offline.',
+  tags:['TypeScript','Realm','Geofencing','Background GPS','Socket.IO'],
+  pts:['Built from scratch with full ownership of the frontend architecture.','Offline-first Realm data layer that syncs once agents are back online.','Location tracking in foreground, background and killed states on Android and iOS.','Route logic turning GPS points into attendance, travel distance and route history.','Geofenced check-ins plus Socket.IO chat with reconnect and message sync.'],
+  play:'https://play.google.com/store/apps/details?id=com.dev.fieldtrack',ios:'https://apps.apple.com/app/id6748821514'},
+ {id:'db',name:'Desibox',sub:'AI food, grocery & meal planner',color:'#E2582B',cats:['ai','payments'],pkg:'com.app.desibox',
+  desc:'Food and grocery ordering with AI meal plans, photo-based recipes and voice ordering.',
+  tags:['AI','Stripe','Klarna','Swish','Apple Pay','Google Pay'],
+  pts:['Photo-to-recipe: snap a dish, get recipe, calories and a one-tap ingredient cart.','AI meal planner that builds a 7-day plan from diet and calorie goals.','Multilingual voice ordering, an AI chatbot and personalised suggestions.','Moved cart handling to local state for faster add/remove and checkout.','Full UI redesign released on both stores.'],
+  play:'https://play.google.com/store/apps/details?id=com.app.desibox',ios:'https://apps.apple.com/us/app/desibox-ai-food-grocery/id6745590538'},
+ {id:'atz',name:'ATZ Pay',sub:'Mobile POS & payments',color:'#0E9F75',cats:['payments'],pkg:'com.frekis.atzpay',
+  desc:'Point of sale for shops, cafes and restaurants: take payments and run the day from a phone.',
+  tags:['Tap to Pay','MobilePay','WeChat Pay','Inventory'],
+  pts:['Checkout flows for cards, Tap to Pay, Apple Pay, Google Pay, Klarna, Swish, MobilePay and WeChat Pay.','Product and inventory screens with live stock levels.','Order tracking from checkout to delivery.','Desk and table management for restaurant billing.'],
+  play:'https://play.google.com/store/apps/details?id=com.frekis.atzpay',ios:''},
+ {id:'cr',name:'Cristo+',sub:'Church donation app',color:'#7A4FD6',cats:['payments','native'],pkg:'iOS · Fortis SDK',
+  desc:'Lets church members give from their phone with Apple Pay through a custom native bridge.',
+  tags:['Native Module','Fortis SDK','Apple Pay','GraphQL'],
+  pts:['Custom native bridge connecting React Native with the Fortis payment SDK on iOS.','Apple Pay donations with results and errors passed back to JavaScript.','Donation flow covering processing, success, failure and cancelled states.','Backend connected through GraphQL APIs.'],
+  play:'',ios:''},
+ {id:'ga',name:'G-Auto & G-Pilot',sub:'Ride booking + driver apps',color:'#F0A500',cats:['realtime','location'],pkg:'Rider + driver pair',
+  desc:'Auto, bike and taxi booking in Indian cities, with a companion app for drivers.',
+  tags:['Socket.IO','REST','RN upgrades','Crash fixes'],
+  pts:['Fixed long-standing Socket.IO connection drops for reliable real-time data.','REST integration for login, data sync and live updates.','React Native upgrades for new Android and iOS releases.','Tracked down production crashes and brought the crash rate down.','Took both apps through store publishing from scratch.'],
+  play:'',ios:'https://apps.apple.com/app/id1671945062'},
+ {id:'bj',name:'Banjee',sub:'Neighbourhood social app',color:'#D63C6F',cats:['realtime'],pkg:'Community & safety',
+  desc:'A neighbourhood app for local updates, safety alerts and staying connected with people nearby.',
+  tags:['Redux','Socket.IO','Firebase','Figma'],
+  pts:['Cross-platform app in React Native with JavaScript and TypeScript.','Moved app state to Redux to clean up data flow between screens.','Real-time updates with Socket.IO and Firebase push notifications.','Refactored older modules to fix critical bugs and reduce tech debt.'],
+  play:'',ios:'https://apps.apple.com/in/app/banjee/id1635760780'},
+ {id:'st',name:'Status365',sub:'Event photo & video',color:'#1C9BC7',cats:['payments'],pkg:'Media · Paytm',
+  desc:'Event photo and video app with in-app editing, push notifications and purchases.',
+  tags:['OneSignal','Paytm','Media editing'],
+  pts:['Set up the frontend architecture.','In-app image and video editing tools.','OneSignal push plus media downloads and file access on both platforms.','Paytm gateway for in-app purchases.'],
+  play:'',ios:''},
+ {id:'wf',name:'Workforce',sub:'Dynamic forms & roles',color:'#5A5F78',cats:['native'],pkg:'Enterprise',
+  desc:'Template-driven forms and role-based screens for operations teams.',
+  tags:['Form engine','RBAC','Performance'],
+  pts:['Dynamic form engine: text, radio, checkbox, signature pad and true/false fields from templates.','Screens and actions rendered by role and CRUD permission, with multiple auth tokens.','Reworked fetching and state updates to remove UI freezes on large data sets.'],
+  play:'',ios:''}
+];
+const CATS=[['all','All'],['location','Location'],['payments','Payments'],['ai','AI'],['realtime','Real-time'],['native','Native & architecture']];
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function storeBtn(url,kind){
+  const isIOS=kind==='ios',label=isIOS?'App Store':'Google Play',pre=isIOS?'Download on the':'Get it on';
+  if(!url) return '';
+  return `<a class="store" href="${url}" target="_blank" rel="noopener" aria-label="${label}">${isIOS?APPLE:PLAY}<span><small>${pre}</small><b>${label}</b></span></a>`;
+}
+document.getElementById('grid').innerHTML=APPS.map(a=>{
+  const links=storeBtn(a.ios,'ios')+storeBtn(a.play,'play');
+  return `<article class="card" data-cats="${a.cats.join(' ')}">
+    <div class="ctop"><div class="icon" style="background:${a.color}">${ICONS[a.id]?`<img src="${ICONS[a.id]}" alt="${esc(a.name)} app icon" width="52" height="52">`:esc(a.name[0])}</div>
+      <div><h3>${esc(a.name)}</h3><p>${esc(a.sub)}</p></div></div>
+    <div class="pkg">${esc(a.pkg)}</div>
+    <p>${esc(a.desc)}</p>
+    <div class="tags">${a.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+    <details><summary>What I built</summary><ul>${a.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></details>
+    <div class="stores">${links||'<span class="store off">Private / client build</span>'}</div>
+  </article>`}).join('');
+
+const fEl=document.getElementById('filters');
+fEl.innerHTML=CATS.map(([k,l],i)=>`<button type="button" data-k="${k}" aria-pressed="${i===0}">${l}</button>`).join('');
+fEl.addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  fEl.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.querySelectorAll('.card').forEach(c=>{c.hidden=!(b.dataset.k==='all'||c.dataset.cats.includes(b.dataset.k))});
+});
+
+const STACK={Mobile:['React Native','TypeScript','JavaScript','Expo','React Navigation','Native Modules'],State:['Redux Toolkit','Redux','Context API'],'Storage & sync':['Realm','SQLite','AsyncStorage','Firebase'],'APIs & real-time':['REST','GraphQL','Socket.IO','WebSockets'],Payments:['Fortis SDK','Apple Pay','Google Pay','Stripe','Klarna','Swish','Tap to Pay','Paytm'],Location:['Google Maps','Geofencing','Background tracking'],'Release & tools':['Xcode','Android Studio','App Store Connect','Play Console','Git','Jira'],'Also learning':['PostgreSQL','Python','SQL & ETL']};
+document.getElementById('stackGrid').innerHTML=Object.entries(STACK).map(([k,v])=>`<div class="sg"><h3>${k}</h3><div>${v.map(s=>`<span>${s}</span>`).join('')}</div></div>`).join('');
+
+/* phone previews */
+const SCREENS={
+ ft:{cap:'FieldTrack360 · geofenced check-in',html:`<small>Today · Agent route</small><h4>3 visits · 18.4 km</h4>
+  <div class="tile" style="padding:0;overflow:hidden"><svg viewBox="0 0 240 170" width="100%" style="display:block;background:#E9EEF7"><path d="M0 40h240M0 110h240M60 0v170M170 0v170" stroke="#fff" stroke-width="8"/><circle cx="170" cy="60" r="34" fill="#2F6BEB22" stroke="#2F6BEB" stroke-dasharray="4 3"/><path d="M28 145 C60 120 70 90 110 92 S150 70 170 60" fill="none" stroke="#2F6BEB" stroke-width="4" stroke-linecap="round"/><circle cx="28" cy="145" r="6" fill="#14162B"/><circle cx="170" cy="60" r="7" fill="#2F6BEB" stroke="#fff" stroke-width="3"/></svg></div>
+  <div class="tile" style="display:flex;justify-content:space-between;align-items:center"><div><b style="font-size:13px">Inside zone · Store #42</b><br><small>Check-in verified 10:12</small></div><span style="background:#DDF5EA;color:#0E7A55;font-size:11px;font-weight:700;padding:4px 8px;border-radius:6px">IN</span></div>
+  <div class="tile"><small>TA/DA claim</small><br><b>₹ 220.80</b> <small>· 18.4 km × ₹12</small></div>`},
+ db:{cap:'Desibox · AI meal planner',html:`<small>Your 7-day plan · 1,800 kcal</small><h4>Monday</h4>
+  ${[['Breakfast','Masala oats','320'],['Lunch','Rajma chawal','610'],['Dinner','Paneer tikka bowl','540']].map(m=>`<div class="tile" style="display:flex;justify-content:space-between"><div><small>${m[0]}</small><br><b style="font-size:13px">${m[1]}</b></div><small style="align-self:center">${m[2]} kcal</small></div>`).join('')}
+  <div style="background:#E2582B;color:#fff;border-radius:12px;padding:11px;text-align:center;font-weight:600;font-size:13px">Add 14 ingredients to cart</div>
+  <div class="tile" style="display:flex;gap:8px;align-items:center"><span style="width:26px;height:26px;border-radius:50%;background:#FCE5DC;display:grid;place-items:center">🎙</span><small>"Order two butter naan"</small></div>`},
+ atz:{cap:'ATZ Pay · Tap to Pay checkout',html:`<small>Table 4 · Order #1186</small><h4>Charge customer</h4>
+  <div class="tile" style="text-align:center;padding:18px"><small>Total</small><div style="font-family:var(--display);font-size:38px;font-weight:800">kr 345,00</div></div>
+  <div style="display:grid;place-items:center;padding:8px"><div style="width:110px;height:110px;border-radius:50%;border:3px solid #0E9F75;display:grid;place-items:center;box-shadow:0 0 0 10px #0E9F7522"><b style="color:#0E9F75;font-size:13px">Hold card<br>near phone</b></div></div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">${['Swish','Klarna','Apple Pay','MobilePay'].map(p=>`<span style="font-size:11px;background:#fff;border:1px solid #E3E5EF;border-radius:6px;padding:3px 7px">${p}</span>`).join('')}</div>`},
+ cr:{cap:'Cristo+ · Apple Pay via native bridge',html:`<small>Grace Community Church</small><h4>Give today</h4>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${['$10','$25','$50','$100','$250','Other'].map((v,i)=>`<div class="tile" style="text-align:center;font-weight:700;${i===2?'background:#7A4FD6;color:#fff':''}">${v}</div>`).join('')}</div>
+  <div class="tile"><small>Fund</small><br><b style="font-size:13px">General Offering</b></div>
+  <div style="background:#000;color:#fff;border-radius:12px;padding:12px;text-align:center;font-weight:600;font-size:14px">Donate with Apple Pay</div>
+  <small style="text-align:center">Status: processing → success</small>`}
+};
+const pick=document.getElementById('devpick'),scr=document.getElementById('appScreen'),cap=document.getElementById('devcap');
+const order=['ft','db','atz','cr'];let cur=0,timer;
+pick.innerHTML=order.map((k,i)=>`<button type="button" data-k="${k}" aria-pressed="${i===0}">${ICONS[k]?`<img src="${ICONS[k]}" alt="" width="18" height="18">`:""}${APPS.find(a=>a.id===k).name}</button>`).join('');
+function show(i){cur=i;const k=order[i];scr.innerHTML=`<div class="app">${SCREENS[k].html}</div>`;cap.textContent=SCREENS[k].cap;
+  pick.querySelectorAll('button').forEach((b,j)=>b.setAttribute('aria-pressed',j===i));}
+function auto(){clearInterval(timer);if(!matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(()=>show((cur+1)%order.length),4200);}
+pick.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;show(order.indexOf(b.dataset.k));auto();});
+show(0);auto();
+
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const t=b.dataset.copy,done=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1600)};
+  try{navigator.clipboard.writeText(t).then(done,()=>{sel(b);});}catch(e){sel(b)}
+}));
+function sel(b){const el=b.parentElement.querySelector('b');const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';setTimeout(()=>b.textContent='Copy',1600)}
+</script>
+
+</body>
+</html>
